@@ -8521,6 +8521,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 3300000, guid: 8d8f93a9e49147740a1bdad559e7748b, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: d43b2c9ed2a393e4595110e8541ee204, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8d8f93a9e49147740a1bdad559e7748b, type: 3}
   m_IsPrefabParent: 0
@@ -13112,8 +13116,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1345154949}
-  m_LocalRotation: {x: 0.029775774, y: 0.932948, z: 0.07939726, w: -0.3498822}
-  m_LocalPosition: {x: 203.74847, y: -90.912125, z: 189.23186}
+  m_LocalRotation: {x: -0.61895686, y: 0, z: 0, w: -0.785425}
+  m_LocalPosition: {x: 196.216, y: 18.347322, z: 178.23201}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -13313,7 +13317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b901e64e77c69b4bb5bc25db2faefa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrzelacznikKamery: 0
+  PrzelacznikKamery: 1
   Kamery:
   - {fileID: 1577312859}
   licznik: 0
@@ -15933,7 +15937,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1577312854}
   m_LocalRotation: {x: -0.61895686, y: 0, z: 0, w: 0.785425}
-  m_LocalPosition: {x: 0, y: 0, z: -0.017}
+  m_LocalPosition: {x: -0.0007, y: -0.0595, z: -0.0114}
   m_LocalScale: {x: 4.39, y: 0.014317653, z: 0.012297397}
   m_LocalEulerAnglesHint: {x: -76.48, y: 0, z: 0}
   m_Children: []
@@ -15978,7 +15982,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 30000
-  field of view: 60
+  field of view: 60.9
   orthographic: 0
   orthographic size: 5
   m_Depth: 100
@@ -18567,8 +18571,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1964160112}
-  m_LocalRotation: {x: 0.024006313, y: 0.9083576, z: 0.052650675, w: -0.41417146}
-  m_LocalPosition: {x: 198.33733, y: 20.20123, z: 183.07782}
+  m_LocalRotation: {x: 0.075322166, y: 0.8894874, z: 0.15884447, w: -0.4217906}
+  m_LocalPosition: {x: 200.3488, y: -8.274258, z: 182.10251}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []

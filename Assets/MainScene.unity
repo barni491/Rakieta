@@ -13116,8 +13116,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1345154949}
-  m_LocalRotation: {x: -0.61895686, y: 0, z: 0, w: -0.785425}
-  m_LocalPosition: {x: 196.216, y: 18.347322, z: 178.23201}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 214.2, y: 21.76, z: 184}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -17685,7 +17685,7 @@ GameObject:
   - 124: {fileID: 1859535248}
   - 81: {fileID: 1859535247}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: FootCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18443,6 +18443,7 @@ MonoBehaviour:
   predkoscBiegania: 7
   czuloscMyszki: 3
   myszGoraDol: 0
+  myszLewoPrawoRakieta: 0
   zakresMyszyGoraDol: 90
 --- !u!1001 &1949763155
 Prefab:

@@ -106,18 +106,16 @@ public class control : MonoBehaviour
     void Update()
     {
 
-        Quaternion turnRotation = Quaternion.Euler(1f, 0f, 0f);
+ //       Quaternion turnRotation = Quaternion.Euler(1f, 0f, 0f);
 
         heightText = ((int)height - 1026).ToString();
 
 
-        //  Debug.Log(throtle);
 
-        
+        moveInput();
 
         if (transform.position.y > 200)
         {
-            //    m_Rigidbody.velocity += 9.71f * Time.fixedTime * (planet.transform.position - transform.position);
             if (!terrainHidden)
             {
                 RenderSettings.skybox = skybox;
@@ -185,7 +183,7 @@ public class control : MonoBehaviour
     void FixedUpdate()
     {
 
-        moveInput();
+        
 
         if (!inAir && transform.position.y > 20) {
             inAir = true;

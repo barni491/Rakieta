@@ -6,6 +6,7 @@ public class PlayerControler : MonoBehaviour
 
     //Obiekt odpowiedzialny za ruch gracza.
     public CharacterController characterControler;
+   
     
     //Prędkość poruszania się gracza.
     public float predkoscPoruszania = 9.0f;

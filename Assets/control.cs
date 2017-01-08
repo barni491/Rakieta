@@ -44,7 +44,7 @@ public class control : MonoBehaviour
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        m_Rigidbody.centerOfMass = new Vector3(0, 10, 0);
+        m_Rigidbody.centerOfMass = new Vector3(0, 11, 0);
         c_Rigidbody = capsuleEngine.GetComponent<Rigidbody>();
     }
 
@@ -84,7 +84,6 @@ public class control : MonoBehaviour
             }
 
             particleSystem.startSpeed = 2.0f + (throtle * 3.0f);
-            m_Rigidbody.AddForce(transform.up * 10000 * throtle);
             if (throtle == 0)
             {
                 engineStarded = false;
@@ -97,13 +96,13 @@ public class control : MonoBehaviour
                 float backMove = backThrotle * rotationSpeed * Time.deltaTime;
                 c_Rigidbody.AddForce(transform.right * 5 * backThrotle);
 
-                Debug.Log("backMove " + backMove + " backThrotle " + backThrotle);
+                //Debug.Log("backMove " + backMove + " backThrotle " + backThrotle);
 
                 turnThrotle = Input.GetAxis("RacketVertical");
                 float turnMove = turnThrotle * rotationSpeed * Time.deltaTime;
                 c_Rigidbody.AddForce(transform.forward * -5 * turnThrotle);
 
-                Debug.Log("turnMove " + turnMove + " turnThrotle " + turnThrotle);
+                //Debug.Log("turnMove " + turnMove + " turnThrotle " + turnThrotle);
 
                 generateSideParticles();
                 //transform.Rotate(-turnMove, 0, -backMove);
@@ -137,6 +136,8 @@ public class control : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        Debug.Log("custom gravity " + customGravity);
 
         if (!inAir && transform.position.y > 12.6f)
         {

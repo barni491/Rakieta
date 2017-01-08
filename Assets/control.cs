@@ -84,6 +84,7 @@ public class control : MonoBehaviour
             }
 
             particleSystem.startSpeed = 2.0f + (throtle * 3.0f);
+            m_Rigidbody.AddForce(transform.up * 20000 * throtle);
             if (throtle == 0)
             {
                 engineStarded = false;

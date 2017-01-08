@@ -14,6 +14,7 @@ public class control : MonoBehaviour
     public GameObject terrain;
     public Material skybox;
     public GameObject planet;
+    public GameObject capsuleEngine;
 
     public ParticleSystem particleSystem;
     public ParticleSystem particleSystemW;
@@ -29,6 +30,7 @@ public class control : MonoBehaviour
     private Vector3 gravitationalAcceleration = new Vector3(9.71f, 9.71f, 9.71f);
 
     private Rigidbody m_Rigidbody;
+    private Rigidbody c_Rigidbody;
 
     private bool terrainHidden = false;
     private bool engineStarded = false;
@@ -43,6 +45,7 @@ public class control : MonoBehaviour
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Rigidbody.centerOfMass = new Vector3(0, 10, 0);
+        c_Rigidbody = capsuleEngine.GetComponent<Rigidbody>();
     }
 
     void OnTriggerEnter(Collider col)
@@ -92,16 +95,18 @@ public class control : MonoBehaviour
             {
                 backThrotle = Input.GetAxis("RacketHorizontal");
                 float backMove = backThrotle * rotationSpeed * Time.deltaTime;
+                c_Rigidbody.AddForce(transform.right * 5 * backThrotle);
 
                 Debug.Log("backMove " + backMove + " backThrotle " + backThrotle);
 
                 turnThrotle = Input.GetAxis("RacketVertical");
                 float turnMove = turnThrotle * rotationSpeed * Time.deltaTime;
+                c_Rigidbody.AddForce(transform.forward * -5 * turnThrotle);
 
                 Debug.Log("turnMove " + turnMove + " turnThrotle " + turnThrotle);
 
                 generateSideParticles();
-                transform.Rotate(-turnMove, 0, -backMove);
+                //transform.Rotate(-turnMove, 0, -backMove);
             }
         }
     }
@@ -137,11 +142,13 @@ public class control : MonoBehaviour
         {
             inAir = true;
             m_Rigidbody.useGravity = true;
+            c_Rigidbody.useGravity = true;
         }
         if (transform.position.y > 100 && !customGravity)
         {
             customGravity = true;
             m_Rigidbody.useGravity = false;
+            c_Rigidbody.useGravity = false;
         }
 
         height = Vector3.Distance(planet.transform.position, transform.position);

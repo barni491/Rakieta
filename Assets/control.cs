@@ -66,7 +66,7 @@ public class control : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log("Collision");
+        Destroy(gameObject);
     }
 
     private void moveInput()
@@ -95,13 +95,13 @@ public class control : MonoBehaviour
             {
                 backThrotle = Input.GetAxis("RacketHorizontal");
                 float backMove = backThrotle * rotationSpeed * Time.deltaTime;
-                c_Rigidbody.AddForce(transform.right * 5 * backThrotle);
+                c_Rigidbody.AddForce(transform.right * 500 * backThrotle);
 
                 //Debug.Log("backMove " + backMove + " backThrotle " + backThrotle);
 
                 turnThrotle = Input.GetAxis("RacketVertical");
                 float turnMove = turnThrotle * rotationSpeed * Time.deltaTime;
-                c_Rigidbody.AddForce(transform.forward * -5 * turnThrotle);
+                c_Rigidbody.AddForce(transform.forward * -500 * turnThrotle);
 
                 //Debug.Log("turnMove " + turnMove + " turnThrotle " + turnThrotle);
 

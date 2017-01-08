@@ -13,10 +13,17 @@ public class control : MonoBehaviour
 
     public GameObject terrain;
     public Material skybox;
-    public ParticleSystem particleSystem;
     public GameObject planet;
 
+    public ParticleSystem particleSystem;
+    public ParticleSystem particleSystemW;
+    public ParticleSystem particleSystemS;
+    public ParticleSystem particleSystemA;
+    public ParticleSystem particleSystemD;
+
     private float throtle = 0;
+    private float backThrotle = 0;
+    private float turnThrotle = 0;
 
 
     private Vector3 gravitationalAcceleration = new Vector3(9.71f, 9.71f, 9.71f);
@@ -83,10 +90,17 @@ public class control : MonoBehaviour
 
             if (inAir)
             {
-                float backMove = Input.GetAxis("RacketHorizontal") * rotationSpeed * Time.deltaTime;
+                backThrotle = Input.GetAxis("RacketHorizontal");
+                float backMove = backThrotle * rotationSpeed * Time.deltaTime;
 
-                float turnMove = Input.GetAxis("RacketVertical") * rotationSpeed * Time.deltaTime;
+                Debug.Log("backMove " + backMove + " backThrotle " + backThrotle);
 
+                turnThrotle = Input.GetAxis("RacketVertical");
+                float turnMove = turnThrotle * rotationSpeed * Time.deltaTime;
+
+                Debug.Log("turnMove " + turnMove + " turnThrotle " + turnThrotle);
+
+                generateSideParticles();
                 transform.Rotate(-turnMove, 0, -backMove);
             }
         }
@@ -143,4 +157,29 @@ public class control : MonoBehaviour
             
         }
     }
+
+    private void generateSideParticles()
+    {
+        //w -1 s 1 turn a -1 d 1 back
+        if (turnThrotle > 0)
+            particleSystemS.Play();
+        else
+            particleSystemS.Stop();
+
+        if (turnThrotle < 0)
+            particleSystemW.Play();
+        else
+            particleSystemW.Stop();
+        
+        if (backThrotle > 0)
+            particleSystemD.Play();
+        else
+            particleSystemD.Stop();
+
+        if (backThrotle < 0)
+            particleSystemA.Play();
+        else
+            particleSystemA.Stop();
+    }
 }
+

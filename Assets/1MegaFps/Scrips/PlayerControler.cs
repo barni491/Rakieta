@@ -68,7 +68,7 @@ public class PlayerControler : MonoBehaviour
             aktualnaWysokoscSkoku += Physics.gravity.y * Time.deltaTime;
         }
 
-        Debug.Log(Physics.gravity.y);
+        //Debug.Log(Physics.gravity.y);
 
         //Bieganie
         if (Input.GetKeyDown("left shift"))
@@ -98,7 +98,7 @@ public class PlayerControler : MonoBehaviour
     {
         if (Camera.current.name == "FootCamera")
         {
-            print(Camera.current.name);
+            //print(Camera.current.name);
             //Pobranie wartości ruchu myszki lewo/prawo.
             // jeżeli wartość dodatnia to poruszamy w prawo,
             // jeżeli wartość ujemna to poruszamy w lewo.

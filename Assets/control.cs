@@ -5,6 +5,7 @@ public class control : MonoBehaviour
 {
 
     // Use this for initialization
+    private const int ATMOSPHERE_BORDER = 2026;
 
     public int force;
 
@@ -21,6 +22,7 @@ public class control : MonoBehaviour
     public ParticleSystem particleSystemS;
     public ParticleSystem particleSystemA;
     public ParticleSystem particleSystemD;
+    public GameObject testParticles;
 
     private float throtle = 0;
     private float backThrotle = 0;
@@ -38,14 +40,20 @@ public class control : MonoBehaviour
     private bool inAir = false;
     private static float height;
     private string heightText = "";
-
+    private string speedText = "";
+    private ParticleSystem[] particles;
     private bool customGravity;
+    private bool startFire;
+
+    private bool inAtmospfere = true;
+    private bool wasOutSideAtmosfhere = false;
 
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Rigidbody.centerOfMass = new Vector3(0, 11, 0);
         c_Rigidbody = capsuleEngine.GetComponent<Rigidbody>();
+        particles = testParticles.GetComponentsInChildren<ParticleSystem>();
     }
 
     void OnTriggerEnter(Collider col)
@@ -84,7 +92,7 @@ public class control : MonoBehaviour
             }
 
             particleSystem.startSpeed = 2.0f + (throtle * 3.0f);
-            m_Rigidbody.AddForce(transform.up * 20000 * throtle);
+            m_Rigidbody.AddForce(transform.up * 80000 * throtle);
             if (throtle == 0)
             {
                 engineStarded = false;
@@ -114,12 +122,14 @@ public class control : MonoBehaviour
     void OnGUI()
     {
         GUI.Label(new Rect(10, 10, 100, 20), "Wysokość " + heightText);
+        GUI.Label(new Rect(10, 20, 100, 20), "Szybkość " + speedText);
     }
 
     void Update()
     {
 
         heightText = ((int)height - 1026).ToString();
+        speedText = m_Rigidbody.velocity.magnitude.ToString();
 
         moveInput();
 
@@ -137,8 +147,38 @@ public class control : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Vector3 v = planet.transform.position - transform.position;
+        height = Vector3.Distance(planet.transform.position, transform.position);
 
-        Debug.Log("custom gravity " + customGravity);
+        if (inAtmospfere && wasOutSideAtmosfhere && !startFire  && inAir)
+        {
+            startFire = true;
+            foreach (ParticleSystem p in this.particles)
+            {
+                p.Play();
+            }
+
+        }
+
+
+
+        if (!wasOutSideAtmosfhere && height > ATMOSPHERE_BORDER && inAir ) {
+            wasOutSideAtmosfhere = true;
+        }
+
+        inAtmospfere = (height <= ATMOSPHERE_BORDER) ? true : false;
+
+        if (inAtmospfere && inAir && startFire && wasOutSideAtmosfhere)
+        {
+            foreach (ParticleSystem p in this.particles)
+            {
+                p.transform.rotation = Quaternion.LookRotation(-m_Rigidbody.velocity, Vector3.up);
+                // p.startSpeed = 1.0f + (1 - (1 / m_Rigidbody.velocity.magnitude) * 6.0f);
+                p.startSpeed =  ((300f/(height-1023) ) * 12.0f);
+           //     particleSystem.startSpeed = 2.0f + (throtle * 3.0f);
+
+            }
+        }
 
         if (!inAir && transform.position.y > 12.6f)
         {
@@ -153,16 +193,19 @@ public class control : MonoBehaviour
             c_Rigidbody.useGravity = false;
         }
 
-        height = Vector3.Distance(planet.transform.position, transform.position);
-
+       
         if (customGravity)
-        {
+        {   
             if (height <= 10000)
             {
-                Vector3 v = planet.transform.position - transform.position;
-                m_Rigidbody.AddForce(v.normalized * (1.0f - height / 10000) * 1000);
+                
+                m_Rigidbody.AddForce(v.normalized * (1.0f - height / 10000) * 10000);
+                
+              //  testParticle
                 
             }
+
+           
             
         }
     }

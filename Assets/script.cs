@@ -7,6 +7,8 @@ public class script : MonoBehaviour {
 
     private Rigidbody m_Rigidbody;
     private ParticleSystem m_BoomParticle;
+    public ParticleSystem flame;
+    public GameObject planet;
 
     private void Awake()
     {
@@ -15,11 +17,27 @@ public class script : MonoBehaviour {
 
     }
 
+    void OnCollisionEnter(Collision col)
+    {
+
+        transform.FindChild("boom").transform.parent = null;
+        m_BoomParticle.Play();
+        Destroy(gameObject, 1f);
+    }
+
 
     void Start () {
 
 
 
+    }
+
+    void FixedUpdate() {
+
+        Vector3 v = planet.transform.position - transform.position;
+        m_Rigidbody.AddForce(v.normalized  * 10000);
+       transform.rotation = Quaternion.LookRotation(-m_Rigidbody.velocity, Vector3.up);
+        flame.transform.rotation = Quaternion.LookRotation(-m_Rigidbody.velocity, Vector3.up);
     }
 	
 	// Update is called once per frame

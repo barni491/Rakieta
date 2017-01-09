@@ -52,32 +52,35 @@ public class Rakieta : MonoBehaviour
         {   
             if(PrzelacznikKamery)
             {
-                licznik++;
+                print( licznik);
                 switch(licznik)
                 {
-                    case 1:
+                    case 0:
                         {
                             _control.isMovable = true;
                             Kamery[0].enabled = true;
                             Kamery[1].enabled = false;
-                        //    PostacGracza.SetActive(false);
-                            
-                            
+                            //    PostacGracza.SetActive(false);
+                            licznik++;
+
                             break;
                         }; 
-                    case 2:
+                    case 1:
                         {
                             _control.isMovable = true;
                             Kamery[0].enabled = false;
                             Kamery[1].enabled = true;
-                            break;                     
+                            licznik++;
+
+                            break;
                         }; 
-                    case 3:
+                    case 2:
                         {
                             Kamery[0].enabled = false;
                             Kamery[1].enabled = false;
-                            PostacGracza.SetActive(true);
                             licznik = 0;
+
+                            PostacGracza.SetActive(true);
                             break;
                         }; 
                 }

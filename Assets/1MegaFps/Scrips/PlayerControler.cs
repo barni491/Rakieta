@@ -96,9 +96,9 @@ public class PlayerControler : MonoBehaviour
      */
     private void myszka()
     {
-        if (Camera.current.name == "FootCamera")
+        if (Camera.current != null && Camera.current.name == "FootCamera")
         {
-            //print(Camera.current.name);
+            print(Camera.current.name);
             //Pobranie wartości ruchu myszki lewo/prawo.
             // jeżeli wartość dodatnia to poruszamy w prawo,
             // jeżeli wartość ujemna to poruszamy w lewo.

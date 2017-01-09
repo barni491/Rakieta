@@ -5,6 +5,10 @@ public class script : MonoBehaviour {
 
     // Use this for initialization
 
+    public AudioClip boomSound;
+
+
+
     private Rigidbody m_Rigidbody;
     private ParticleSystem m_BoomParticle;
     public ParticleSystem flame;
@@ -51,18 +55,16 @@ public class script : MonoBehaviour {
 
             transform.FindChild("boom").transform.parent = null;
             m_BoomParticle.Play();
-
-        //    m_Rigidbody.isKinematic = true;
-            Destroy(gameObject,1f);
-
-
+            //    m_Rigidbody.isKinematic = true;
+            PlaySound();
+            Destroy(gameObject, 1f);
         }
 
-           
+    }
 
-
-
-
-
+    private void PlaySound()
+    {
+        GameObject audio = GameObject.Find("BoomSound");
+        audio.GetComponent<AudioSource>().PlayOneShot(boomSound);
     }
 }

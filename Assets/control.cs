@@ -12,6 +12,8 @@ public class control : MonoBehaviour
     public int speed;
     public int rotationSpeed;
 
+    public AudioClip boomSound;
+
     public GameObject terrain;
     public Material skybox;
     public GameObject planet;
@@ -74,6 +76,7 @@ public class control : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        PlaySound();
         Destroy(gameObject);
     }
 
@@ -232,6 +235,12 @@ public class control : MonoBehaviour
             particleSystemA.Play();
         else
             particleSystemA.Stop();
+    }
+
+    private void PlaySound()
+    {
+        GameObject audio = GameObject.Find("BoomSound");
+        audio.GetComponent<AudioSource>().PlayOneShot(boomSound);
     }
 }
 

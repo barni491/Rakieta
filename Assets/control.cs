@@ -30,6 +30,7 @@ public class control : MonoBehaviour
     private float backThrotle = 0;
     private float turnThrotle = 0;
 
+    private AudioSource[] source;
 
     private Vector3 gravitationalAcceleration = new Vector3(9.71f, 9.71f, 9.71f);
 
@@ -58,6 +59,11 @@ public class control : MonoBehaviour
         particles = testParticles.GetComponentsInChildren<ParticleSystem>();
     }
 
+    void Awake()
+    {
+        source = GetComponents<AudioSource>();
+    }
+
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player" && !isMovable)
@@ -76,7 +82,7 @@ public class control : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        PlaySound();
+        PlayBoomSound();
         Destroy(gameObject);
     }
 
@@ -90,6 +96,8 @@ public class control : MonoBehaviour
 
             if (!engineStarded)
             {
+                PlaySoundNicely(0);
+
                 particleSystem.Play();
                 engineStarded = true;
             }
@@ -98,6 +106,7 @@ public class control : MonoBehaviour
             m_Rigidbody.AddForce(transform.up * 80000 * throtle);
             if (throtle == 0)
             {
+                source[0].Stop();
                 engineStarded = false;
                 particleSystem.Stop();
             }
@@ -119,6 +128,14 @@ public class control : MonoBehaviour
                 generateSideParticles();
                 //transform.Rotate(-turnMove, 0, -backMove);
             }
+        }
+    }
+
+    void PlaySoundNicely(int audioSource)
+    {
+        if (!source[audioSource].isPlaying)
+        {
+            source[audioSource].Play();
         }
     }
 
@@ -155,12 +172,13 @@ public class control : MonoBehaviour
 
         if (inAtmospfere && wasOutSideAtmosfhere && !startFire  && inAir)
         {
+            source[5].Play();
+
             startFire = true;
             foreach (ParticleSystem p in this.particles)
             {
                 p.Play();
             }
-
         }
 
 
@@ -213,34 +231,60 @@ public class control : MonoBehaviour
         }
     }
 
+
     private void generateSideParticles()
     {
         //w -1 s 1 turn a -1 d 1 back
         if (turnThrotle > 0)
+        {
             particleSystemS.Play();
+            PlaySoundNicely(1);
+        }
         else
+        {
             particleSystemS.Stop();
+            source[1].Stop();
+        }     
 
         if (turnThrotle < 0)
+        {
             particleSystemW.Play();
-        else
+            PlaySoundNicely(2);
+        }
+       else
+        {
             particleSystemW.Stop();
-        
+            source[2].Stop();
+        }
+
         if (backThrotle > 0)
+        {
             particleSystemD.Play();
+            PlaySoundNicely(3);
+        }
         else
+        {
             particleSystemD.Stop();
+            source[3].Stop();
+        }
 
         if (backThrotle < 0)
+        {
             particleSystemA.Play();
+            PlaySoundNicely(4);
+        }
         else
-            particleSystemA.Stop();
+        {
+           particleSystemA.Stop();
+           source[4].Stop();
+        }
     }
 
-    private void PlaySound()
+    private void PlayBoomSound()
     {
         GameObject audio = GameObject.Find("BoomSound");
         audio.GetComponent<AudioSource>().PlayOneShot(boomSound);
     }
+
 }
 

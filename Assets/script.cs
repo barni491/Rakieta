@@ -23,7 +23,7 @@ public class script : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-
+        PlaySound();
         transform.FindChild("boom").transform.parent = null;
         m_BoomParticle.Play();
         Destroy(gameObject, 1f);

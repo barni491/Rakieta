@@ -126,7 +126,7 @@ public class PlayerControler : MonoBehaviour
             myszGoraDol -= Input.GetAxis("Mouse Y") * czuloscMyszki;
 
             //Funkcja nie pozwala aby wartość przekroczyła dane zakresy.
-            myszGoraDol = Mathf.Clamp(myszGoraDol, -zakresMyszyGoraDol, zakresMyszyGoraDol);
+            myszGoraDol = Mathf.Clamp(myszGoraDol, -(zakresMyszyGoraDol+90f), zakresMyszyGoraDol+90f);
             //Ponieważ CharacterController nie obraca się góra/dół obracamy tylko kamerę.
             Camera.main.transform.localRotation = Quaternion.Euler(myszGoraDol, -myszLewoPrawoRakieta, 0);
         }

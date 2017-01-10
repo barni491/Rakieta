@@ -19297,29 +19297,49 @@ AudioSource:
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 3.6137695
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: 0.036137696
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -27.683
+      outSlope: -27.683
+      tangentMode: 0
+    - time: 0.07227539
+      value: 0.5
+      inSlope: -6.92075
+      outSlope: -6.92075
+      tangentMode: 0
+    - time: 0.14455079
+      value: 0.25
+      inSlope: -1.7301875
+      outSlope: -1.7301875
+      tangentMode: 0
+    - time: 0.28910157
+      value: 0.125
+      inSlope: -0.43254688
+      outSlope: -0.43254688
+      tangentMode: 0
+    - time: 0.57820314
+      value: 0.0625
+      inSlope: -0.10813672
+      outSlope: -0.10813672
       tangentMode: 0
     - time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.03615208
+      outSlope: -0.03615208
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -19359,10 +19379,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 559920582}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 259.8731, y: 5.221657, z: 316.34467}
+  m_LocalRotation: {x: -0.30517313, y: 0.4275068, z: 0.32679754, w: 0.78569126}
+  m_LocalPosition: {x: 253.5, y: 8.1, z: 195.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -49.367, y: 46.508003, z: 22.596}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
@@ -54265,8 +54285,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1964160112}
-  m_LocalRotation: {x: 0.14208001, y: 0.31222862, z: 0.047286823, w: -0.93813145}
-  m_LocalPosition: {x: 226.87433, y: -0.9967766, z: 138.75563}
+  m_LocalRotation: {x: -0.14280388, y: 0.37263477, z: 0.05815246, w: 0.9150785}
+  m_LocalPosition: {x: 72.18527, y: -98.43594, z: 300.7021}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
